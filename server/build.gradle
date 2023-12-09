@@ -1,0 +1,64 @@
+plugins {
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    id 'com.google.protobuf' version '0.9.4'
+}
+
+group = 'br.com.gabrielgmusskopf.grpackage.server'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+    jvmToolchain(8)
+}
+
+application {
+    mainClassName = 'MainKt'
+}
+
+def grpcVersion = "1.60.0"
+def grpcKotlinVersion = "1.4.1"
+def protobufVersion = '3.24.0'
+def protocVersion = protobufVersion
+
+dependencies {
+    implementation("io.grpc:grpc-kotlin-stub:1.4.1")
+    implementation("io.grpc:grpc-protobuf:${grpcVersion}")
+    implementation("io.grpc:grpc-stub:${grpcVersion}")
+    implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
+    implementation("io.grpc:grpc-api:${grpcVersion}")
+
+    compileOnly "org.apache.tomcat:annotations-api:6.0.53"
+
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:${protocVersion}" }
+    plugins {
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
+        grpckt { artifact = "io.grpc:protoc-gen-grpc-kotlin:0.1.5" }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+            grpckt {}
+        }
+    }
+}
+
+sourceSets {
+    main {
+        kotlin {
+            srcDirs 'build/generated/sources/proto/main/grpc'
+            srcDirs 'build/generated/sources/proto/main/java'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

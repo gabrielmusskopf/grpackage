@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.gabrielgmusskopf.grpackage.server";
+
+package server;
+
+service CreatePackage {
+  rpc Create (CreatePackageRequest) returns (CreatePackageResponse) {}
+}
+
+message CreatePackageRequest {
+  string name = 1;
+  string user = 2;
+}
+
+message CreatePackageResponse {
+  string id = 1;
+}
