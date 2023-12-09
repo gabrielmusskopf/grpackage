@@ -8,7 +8,8 @@ suspend fun main() {
     val channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create()).build();
     try {
         val client = Client(channel);
-        client.create("Coffee", "Gabriel")
+        val id = client.create(1, 1, "São Leopoldo")
+        client.consult(1)
     } finally {
         channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
     }

@@ -20,7 +20,6 @@ application {
 }
 
 def grpcVersion = "1.60.0"
-def grpcKotlinVersion = "1.4.1"
 def protobufVersion = '3.24.0'
 def protocVersion = protobufVersion
 
@@ -30,6 +29,8 @@ dependencies {
     implementation("io.grpc:grpc-stub:${grpcVersion}")
     implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
     implementation("io.grpc:grpc-api:${grpcVersion}")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC")
 
     compileOnly "org.apache.tomcat:annotations-api:6.0.53"
 
@@ -44,8 +45,8 @@ protobuf {
     }
     generateProtoTasks {
         all()*.plugins {
-            grpc {}
             grpckt {}
+            grpc {}
         }
     }
 }

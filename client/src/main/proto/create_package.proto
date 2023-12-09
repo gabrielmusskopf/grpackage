@@ -2,6 +2,7 @@ syntax = "proto3";
 
 option java_multiple_files = true;
 option java_package = "br.com.gabrielgmusskopf.grpackage.server";
+option java_outer_classname = "CreatePackageProto";
 
 package server;
 
@@ -10,10 +11,11 @@ service CreatePackage {
 }
 
 message CreatePackageRequest {
-  string name = 1;
-  string user = 2;
+  uint64 userId = 1;
+  uint64 productId = 2;
+  string destination = 3;
 }
 
 message CreatePackageResponse {
-  string id = 1;
+  uint64 id = 1;
 }

@@ -1,12 +1,17 @@
 import io.grpc.Server
 import io.grpc.ServerBuilder
+import repository.PackageRepository
+import repository.PackageRepositoryImpl
+import service.ConsultPackageService
+import service.CreatePackageService
 
-class GrpackageServer {
+class GrpackageServer(private val port: Int = 50051) {
 
-    private val port: Int = 50051
+    private val packageRepository: PackageRepository = PackageRepositoryImpl()
     private var grpcServer: Server = ServerBuilder
         .forPort(port)
-        .addService(CreatePackage())
+        .addService(CreatePackageService(packageRepository))
+        .addService(ConsultPackageService(packageRepository))
         .build()
 
     fun start() {

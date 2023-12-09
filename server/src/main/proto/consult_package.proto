@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.gabrielgmusskopf.grpackage.server";
+option java_outer_classname = "ConsultPackageProto";
+
+package server;
+
+service ConsultPackage {
+  rpc ConsultPackage(ConsultPackageRequest) returns (ConsultPackageResponse) {}
+}
+
+message ConsultPackageRequest {
+  uint64 id = 1;
+}
+
+message ConsultPackageResponse {
+  uint64 id = 1;
+  uint64 userId = 2;
+  uint64 productId = 3;
+  string destination = 4;
+  string deliveredDate = 5;
+  string status = 6;
+}
