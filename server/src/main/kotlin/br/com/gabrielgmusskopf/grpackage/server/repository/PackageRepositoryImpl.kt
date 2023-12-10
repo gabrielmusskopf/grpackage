@@ -1,9 +1,9 @@
-package repository
+package br.com.gabrielgmusskopf.grpackage.server.repository
 
-import domain.Package
-import domain.PackageStatus
-import infra.DatabaseSingleton.dbQuery
-import infra.Packages
+import br.com.gabrielgmusskopf.grpackage.server.domain.Package
+import br.com.gabrielgmusskopf.grpackage.server.domain.PackageStatus
+import br.com.gabrielgmusskopf.grpackage.server.infra.DatabaseSingleton.dbQuery
+import br.com.gabrielgmusskopf.grpackage.server.infra.Packages
 import org.jetbrains.exposed.sql.*
 
 class PackageRepositoryImpl : PackageRepository {

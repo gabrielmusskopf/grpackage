@@ -16,7 +16,7 @@ kotlin {
 }
 
 application {
-    mainClassName = 'MainKt'
+    mainClassName = "${group}.MainKt"
 }
 
 def grpcVersion = "1.60.0"

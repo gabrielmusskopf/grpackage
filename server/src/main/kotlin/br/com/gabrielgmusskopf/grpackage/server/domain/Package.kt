@@ -1,4 +1,4 @@
-package domain
+package br.com.gabrielgmusskopf.grpackage.server.domain
 
 import java.time.LocalDate
 

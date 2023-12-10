@@ -1,9 +1,11 @@
+package br.com.gabrielgmusskopf.grpackage.server
+
+import br.com.gabrielgmusskopf.grpackage.server.repository.PackageRepository
+import br.com.gabrielgmusskopf.grpackage.server.repository.PackageRepositoryImpl
+import br.com.gabrielgmusskopf.grpackage.server.service.ConsultPackageService
+import br.com.gabrielgmusskopf.grpackage.server.service.CreatePackageService
 import io.grpc.Server
 import io.grpc.ServerBuilder
-import repository.PackageRepository
-import repository.PackageRepositoryImpl
-import service.ConsultPackageService
-import service.CreatePackageService
 
 class GrpackageServer(private val port: Int = 50051) {
 

@@ -1,12 +1,12 @@
-package service
+package br.com.gabrielgmusskopf.grpackage.server.service
 
 import br.com.gabrielgmusskopf.grpackage.server.ConsultPackageGrpcKt
 import br.com.gabrielgmusskopf.grpackage.server.ConsultPackageRequest
 import br.com.gabrielgmusskopf.grpackage.server.ConsultPackageResponse
-import domain.Package
+import br.com.gabrielgmusskopf.grpackage.server.domain.Package
+import br.com.gabrielgmusskopf.grpackage.server.repository.PackageRepository
 import io.grpc.Status.NOT_FOUND
 import io.grpc.StatusRuntimeException
-import repository.PackageRepository
 
 class ConsultPackageService(private val repository: PackageRepository) :
     ConsultPackageGrpcKt.ConsultPackageCoroutineImplBase() {

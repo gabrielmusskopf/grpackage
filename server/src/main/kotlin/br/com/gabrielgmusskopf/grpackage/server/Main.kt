@@ -1,4 +1,6 @@
-import infra.DatabaseSingleton
+package br.com.gabrielgmusskopf.grpackage.server
+
+import br.com.gabrielgmusskopf.grpackage.server.infra.DatabaseSingleton
 
 fun main() {
     DatabaseSingleton.init()

@@ -1,6 +1,6 @@
-package infra
+package br.com.gabrielgmusskopf.grpackage.server.infra
 
-import domain.PackageStatus
+import br.com.gabrielgmusskopf.grpackage.server.domain.PackageStatus
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.javatime.date
 

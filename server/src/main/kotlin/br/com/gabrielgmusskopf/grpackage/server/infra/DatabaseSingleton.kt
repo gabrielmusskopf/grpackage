@@ -1,4 +1,4 @@
-package infra
+package br.com.gabrielgmusskopf.grpackage.server.infra
 
 import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.Database

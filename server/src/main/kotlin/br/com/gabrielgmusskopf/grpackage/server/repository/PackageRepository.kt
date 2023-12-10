@@ -1,6 +1,6 @@
-package repository
+package br.com.gabrielgmusskopf.grpackage.server.repository
 
-import domain.Package
+import br.com.gabrielgmusskopf.grpackage.server.domain.Package
 
 interface PackageRepository {
     suspend fun getAll(): List<Package>

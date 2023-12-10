@@ -1,17 +1,17 @@
-package service
+package br.com.gabrielgmusskopf.grpackage.server.service
 
 import br.com.gabrielgmusskopf.grpackage.server.CreatePackageGrpcKt
 import br.com.gabrielgmusskopf.grpackage.server.CreatePackageRequest
 import br.com.gabrielgmusskopf.grpackage.server.CreatePackageResponse
-import domain.Package
-import domain.PackageStatus
+import br.com.gabrielgmusskopf.grpackage.server.domain.Package
+import br.com.gabrielgmusskopf.grpackage.server.domain.PackageStatus
+import br.com.gabrielgmusskopf.grpackage.server.repository.NewPackage
+import br.com.gabrielgmusskopf.grpackage.server.repository.PackageRepository
 import io.grpc.Status
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import repository.NewPackage
-import repository.PackageRepository
 
 class CreatePackageService(private val repository: PackageRepository) :
     CreatePackageGrpcKt.CreatePackageCoroutineImplBase() {
