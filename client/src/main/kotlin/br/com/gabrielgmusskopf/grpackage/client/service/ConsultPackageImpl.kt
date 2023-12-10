@@ -22,7 +22,7 @@ class ConsultPackageImpl(private val grpackageServerApi: GrpackageServerApi) : C
     }
 
     private fun Data.toRequest(): ConsultPackageRequest = ConsultPackageRequest.newBuilder()
-        .setId(this.id)
+        .setId(this.userId)
         .build()
 
     private fun ConsultPackageResponse.toDomain(): Package = Package(

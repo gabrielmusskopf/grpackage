@@ -1,5 +1,8 @@
 package br.com.gabrielgmusskopf.grpackage.client.grpc
 
+import br.com.gabrielgmusskopf.grpackage.client.ConsultMyPackagesGrpcKt
+import br.com.gabrielgmusskopf.grpackage.client.ConsultMyPackagesRequest
+import br.com.gabrielgmusskopf.grpackage.client.ConsultMyPackagesResponse
 import br.com.gabrielgmusskopf.grpackage.client.service.GrpackageServerApi
 import br.com.gabrielgmusskopf.grpackage.server.ConsultPackageGrpcKt.ConsultPackageCoroutineStub
 import br.com.gabrielgmusskopf.grpackage.server.ConsultPackageRequest
@@ -22,6 +25,10 @@ class GrpcClient(host: String, port: Int) : GrpackageServerApi {
 
     override suspend fun consultPackage(request: ConsultPackageRequest): ConsultPackageResponse = execute { channel ->
         ConsultPackageCoroutineStub(channel).consultPackage(request)
+    }
+
+    override suspend fun consultMyPackages(request: ConsultMyPackagesRequest): ConsultMyPackagesResponse = execute {channel ->
+        ConsultMyPackagesGrpcKt.ConsultMyPackagesCoroutineStub(channel).consult(request)
     }
 
     private suspend fun <T> execute(execFunc: suspend (ManagedChannel) -> T): T {

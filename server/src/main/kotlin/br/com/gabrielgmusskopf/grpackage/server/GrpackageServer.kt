@@ -2,6 +2,7 @@ package br.com.gabrielgmusskopf.grpackage.server
 
 import br.com.gabrielgmusskopf.grpackage.server.repository.PackageRepository
 import br.com.gabrielgmusskopf.grpackage.server.repository.PackageRepositoryImpl
+import br.com.gabrielgmusskopf.grpackage.server.service.ConsultMyPackagesService
 import br.com.gabrielgmusskopf.grpackage.server.service.ConsultPackageService
 import br.com.gabrielgmusskopf.grpackage.server.service.CreatePackageService
 import io.grpc.Server
@@ -14,6 +15,7 @@ class GrpackageServer(private val port: Int = 50051) {
         .forPort(port)
         .addService(CreatePackageService(packageRepository))
         .addService(ConsultPackageService(packageRepository))
+        .addService(ConsultMyPackagesService(packageRepository))
         .build()
 
     fun start() {

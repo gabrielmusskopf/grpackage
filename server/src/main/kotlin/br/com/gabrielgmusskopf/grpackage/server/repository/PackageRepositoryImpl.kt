@@ -12,6 +12,12 @@ class PackageRepositoryImpl : PackageRepository {
         Packages.selectAll().map(::resultRowToPackage)
     }
 
+    override suspend fun getAllByUserId(userId: Long): List<Package> = dbQuery {
+        Packages
+            .select { Packages.userId eq userId }
+            .map(::resultRowToPackage)
+    }
+
     override suspend fun save(new: NewPackage): Package? = dbQuery {
         val insertStatement = Packages.insert {
             it[userId] = new.userId

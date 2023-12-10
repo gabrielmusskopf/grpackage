@@ -1,5 +1,6 @@
 package br.com.gabrielgmusskopf.grpackage.client
 
+import br.com.gabrielgmusskopf.grpackage.client.grpc.GrpcClient
 import br.com.gabrielgmusskopf.grpackage.client.plugins.configureRouting
 import br.com.gabrielgmusskopf.grpackage.client.plugins.configureSerialization
 import io.ktor.server.application.*
@@ -12,7 +13,8 @@ fun main() {
 }
 
 fun Application.module() {
-    configureRouting()
+    val server = GrpcClient("localhost", 50051)
+    configureRouting(server)
     configureSerialization()
 }
 
