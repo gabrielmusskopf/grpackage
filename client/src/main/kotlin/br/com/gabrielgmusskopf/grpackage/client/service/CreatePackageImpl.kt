@@ -28,7 +28,8 @@ class CreatePackageImpl(private val grpackageServerApi: GrpackageServerApi) : Cr
         this.productId,
         this.destination,
         PackageStatus.valueOf(this.status),
-        LocalDate.parse(this.deliveredDate)
+        // TODO: Corrigir por favor
+        if (this.deliveredDate != "null") LocalDate.parse(this.deliveredDate) else null
     )
 
 }

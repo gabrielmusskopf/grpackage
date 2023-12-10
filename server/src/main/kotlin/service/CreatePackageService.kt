@@ -10,6 +10,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import repository.PackageRepository
+import java.time.LocalDate
 
 class CreatePackageService(private val repository: PackageRepository) :
     CreatePackageGrpcKt.CreatePackageCoroutineImplBase() {
@@ -26,7 +27,14 @@ class CreatePackageService(private val repository: PackageRepository) :
             deliveredPackage(saved)
         }
 
-        return CreatePackageResponse.newBuilder().setId(saved.id!!).build();
+        return CreatePackageResponse.newBuilder()
+            .setId(saved.id!!)
+            .setUserId(saved.userId)
+            .setProductId(saved.productId)
+            .setDestination(saved.destination)
+            .setStatus(saved.status.name)
+            .setDeliveredDate(saved.deliveryDate.toString())
+            .build();
     }
 
     private suspend fun deliverPackage(pkg: Package) {

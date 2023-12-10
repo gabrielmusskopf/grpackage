@@ -18,4 +18,9 @@ message CreatePackageRequest {
 
 message CreatePackageResponse {
   uint64 id = 1;
+  uint64 userId = 2;
+  uint64 productId = 3;
+  string destination = 4;
+  string deliveredDate = 5;
+  string status = 6;
 }

@@ -31,7 +31,8 @@ class ConsultPackageImpl(private val grpackageServerApi: GrpackageServerApi) : C
         this.productId,
         this.destination,
         PackageStatus.valueOf(this.status),
-        LocalDate.parse(this.deliveredDate)
+        // FIXME
+        if (this.deliveredDate != "") LocalDate.parse(this.deliveredDate) else null
     )
 
 }
