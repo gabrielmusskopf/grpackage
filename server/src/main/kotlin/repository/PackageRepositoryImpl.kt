@@ -1,28 +1,51 @@
 package repository
 
 import domain.Package
+import domain.PackageStatus
+import infra.DatabaseSingleton.dbQuery
+import infra.Packages
+import org.jetbrains.exposed.sql.*
 
 class PackageRepositoryImpl : PackageRepository {
 
-    private val packages: MutableMap<Long, Package> = mutableMapOf()
-
-    private fun nextId(): Long = packages.size.toLong() + 1
-
-    override fun getAll(): List<Package> = packages.values.toList()
-
-    override fun save(pkg: Package): Package {
-        if (pkg.id != null && packages.containsKey(pkg.id)) {
-            //TODO: update
-            return pkg
-        }
-
-        val id = nextId()
-        pkg.id = id
-        packages[id] = pkg
-
-        return pkg
+    override suspend fun getAll(): List<Package> = dbQuery {
+        Packages.selectAll().map(::resultRowToPackage)
     }
 
-    override fun getById(id: Long) = packages[id]
+    override suspend fun save(new: NewPackage): Package? = dbQuery {
+        val insertStatement = Packages.insert {
+            it[userId] = new.userId
+            it[productId] = new.productId
+            it[destination] = new.destination
+            it[status] = PackageStatus.APPROVING
+        }
+        insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToPackage)
+    }
+
+    override suspend fun update(pkg: Package) : Boolean = dbQuery {
+        Packages.update({ Packages.id eq pkg.id }) {
+            it[userId] = pkg.userId
+            it[productId] = pkg.productId
+            it[destination] = pkg.destination
+            it[status] = pkg.status
+            it[deliveryDate] = pkg.deliveryDate
+        } > 0
+    }
+
+    override suspend fun getById(id: Long) = dbQuery {
+        Packages
+            .select { Packages.id eq id }
+            .map(::resultRowToPackage)
+            .singleOrNull()
+    }
+
+    private fun resultRowToPackage(row: ResultRow) = Package(
+        row[Packages.id],
+        row[Packages.userId],
+        row[Packages.productId],
+        row[Packages.destination],
+        row[Packages.status],
+        row[Packages.deliveryDate],
+    )
 
 }

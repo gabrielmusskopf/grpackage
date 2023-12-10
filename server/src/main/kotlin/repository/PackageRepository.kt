@@ -3,7 +3,10 @@ package repository
 import domain.Package
 
 interface PackageRepository {
-    fun getAll(): List<Package>
-    fun save(pkg: Package): Package
-    fun getById(id: Long): Package?
+    suspend fun getAll(): List<Package>
+    suspend fun save(new: NewPackage): Package?
+    suspend fun getById(id: Long): Package?
+    suspend fun update(pkg: Package): Boolean
 }
+
+data class NewPackage(val userId: Long, val productId: Long, val destination: String)
