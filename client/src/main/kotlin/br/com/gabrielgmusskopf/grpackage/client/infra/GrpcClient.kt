@@ -1,9 +1,8 @@
-package br.com.gabrielgmusskopf.grpackage.client.grpc
+package br.com.gabrielgmusskopf.grpackage.client.infra
 
 import br.com.gabrielgmusskopf.grpackage.client.ConsultMyPackagesGrpcKt
 import br.com.gabrielgmusskopf.grpackage.client.ConsultMyPackagesRequest
 import br.com.gabrielgmusskopf.grpackage.client.ConsultMyPackagesResponse
-import br.com.gabrielgmusskopf.grpackage.client.service.GrpackageServerApi
 import br.com.gabrielgmusskopf.grpackage.server.ConsultPackageGrpcKt.ConsultPackageCoroutineStub
 import br.com.gabrielgmusskopf.grpackage.server.ConsultPackageRequest
 import br.com.gabrielgmusskopf.grpackage.server.ConsultPackageResponse

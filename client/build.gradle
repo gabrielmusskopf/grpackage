@@ -21,17 +21,18 @@ application {
     mainClassName = "${group}.MainKt"
 }
 
-def grpcVersion = "1.60.0"
-def grpcKotlinVersion = "1.4.1"
-def protobufVersion = '3.24.0'
-def protocVersion = protobufVersion
+def grpc_version = "1.60.0"
+def grpc_kotlin_version = "1.4.1"
+def protobuf_version = '3.24.0'
+def protoc_version = protobuf_version
+def koin_ktor_version = "3.5.1"
 
 dependencies {
-    implementation("io.grpc:grpc-kotlin-stub:${grpcKotlinVersion}")
-    implementation("io.grpc:grpc-protobuf:${grpcVersion}")
-    implementation("io.grpc:grpc-stub:${grpcVersion}")
-    implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
-    implementation("io.grpc:grpc-api:${grpcVersion}")
+    implementation("io.grpc:grpc-kotlin-stub:${grpc_kotlin_version}")
+    implementation("io.grpc:grpc-protobuf:${grpc_version}")
+    implementation("io.grpc:grpc-stub:${grpc_version}")
+    implementation("io.grpc:grpc-netty-shaded:${grpc_version}")
+    implementation("io.grpc:grpc-api:${grpc_version}")
 
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-netty")
@@ -39,15 +40,18 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
     implementation("ch.qos.logback:logback-classic:1.4.14")
 
-    compileOnly "org.apache.tomcat:annotations-api:6.0.53"
+    implementation("io.insert-koin:koin-ktor:$koin_ktor_version")
+    //implementation("io.insert-koin:koin-logger-slf4j:$koin_ktor_version")
 
-    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    compileOnly("org.apache.tomcat:annotations-api:6.0.53")
+
+    testImplementation ("org.jetbrains.kotlin:kotlin-test")
 }
 
 protobuf {
-    protoc { artifact = "com.google.protobuf:protoc:${protocVersion}" }
+    protoc { artifact = "com.google.protobuf:protoc:${protoc_version}" }
     plugins {
-        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpc_version}" }
         grpckt { artifact = "io.grpc:protoc-gen-grpc-kotlin:0.1.5" }
     }
     generateProtoTasks {

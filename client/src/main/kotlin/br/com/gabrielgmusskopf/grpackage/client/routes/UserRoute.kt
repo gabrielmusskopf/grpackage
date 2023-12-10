@@ -1,16 +1,15 @@
 package br.com.gabrielgmusskopf.grpackage.client.routes
 
-import br.com.gabrielgmusskopf.grpackage.client.service.ConsultMyPackagesImpl
 import br.com.gabrielgmusskopf.grpackage.client.service.ConsultMyPackagesService
-import br.com.gabrielgmusskopf.grpackage.client.service.GrpackageServerApi
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.koin.ktor.ext.inject
 
-fun Route.userRoutes(server: GrpackageServerApi) {
-    val consultMyPackages = ConsultMyPackagesImpl(server)
+fun Route.userRoutes() {
+    val consultMyPackages by inject<ConsultMyPackagesService>()
 
     route("/users") {
         get("/{id?}/packages") {

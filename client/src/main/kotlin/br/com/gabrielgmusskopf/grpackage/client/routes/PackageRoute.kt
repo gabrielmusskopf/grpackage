@@ -1,16 +1,18 @@
 package br.com.gabrielgmusskopf.grpackage.client.routes
 
-import br.com.gabrielgmusskopf.grpackage.client.service.*
+import br.com.gabrielgmusskopf.grpackage.client.service.ConsultPackageService
+import br.com.gabrielgmusskopf.grpackage.client.service.CreatePackageService
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
+import org.koin.ktor.ext.inject
 
-fun Route.packageRoutes(server: GrpackageServerApi) {
-    val consultService = ConsultPackageImpl(server)
-    val createService = CreatePackageImpl(server)
+fun Route.packageRoutes() {
+    val consultService by inject<ConsultPackageService>()
+    val createService by inject<CreatePackageService>()
 
     route("/packages") {
         get("/{id?}") {

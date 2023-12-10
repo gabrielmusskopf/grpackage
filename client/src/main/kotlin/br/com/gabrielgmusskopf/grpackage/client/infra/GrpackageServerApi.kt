@@ -1,4 +1,4 @@
-package br.com.gabrielgmusskopf.grpackage.client.service
+package br.com.gabrielgmusskopf.grpackage.client.infra
 
 import br.com.gabrielgmusskopf.grpackage.client.ConsultMyPackagesRequest
 import br.com.gabrielgmusskopf.grpackage.client.ConsultMyPackagesResponse
